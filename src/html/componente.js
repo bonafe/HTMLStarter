@@ -4,6 +4,7 @@ export class Componente extends HTMLElement{
     constructor(){
         super();
         this.shadow = this.attachShadow({mode: 'open'});
+
         this.carregarTemplate();
     }
 

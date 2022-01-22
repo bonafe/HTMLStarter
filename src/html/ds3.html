@@ -122,9 +122,21 @@ import { Componente } from "./componente.js";
 
 'use strict';
 
-window.onload = renderizar;
+window.onload = carregou;
 window.onresize = renderizar;
 
+
+function carregou(){
+
+    const supportsContainerQueries = "container" in document.documentElement.style;
+
+    // Conditional Import
+    if (!supportsContainerQueries) {
+      import("https://cdn.skypack.dev/container-query-polyfill").then(modulo =>{
+        renderizar();
+      });
+    }
+}
 
 function renderizar() {
 

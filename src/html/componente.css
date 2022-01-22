@@ -2,9 +2,27 @@ label{
     color: yellow;
 }
 
+.container{
+  height: 100%;
+  container-type: size;
+  container-name: componente-wrapper;
+  background-color: green;
+}
+
+@container componente-wrapper size(max-width: 700px) {
+  .controlesJanela {
+    flex-direction: column;
+  }
+}
+
+
 .controlesJanela{
     position: absolute;
     right:0;
     top:0;
     display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    background-color: red;
 }
