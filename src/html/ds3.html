@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./bibliotecas/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  position: relative;
+}
+
+.node {
+  border: solid 1px white;
+  font: 10px sans-serif;
+  line-height: 12px;
+  overflow: hidden;
+  position: absolute;
+  text-indent: 2px;
+}
+
+.container {
+    opacity: 0;
+    background: blue;
+    height: 100%;
+    width: 100%;
+    animation: opacityOn .52s normal forwards step-end;
+    animation-delay: 0s;
+}
+@keyframes opacityOn {
+    0% {
+        opacity: 0.15;
+    }
+    25%{
+        opacity: 0.25;
+    }
+    50%{
+        opacity: 0.5;
+    }
+    75%{
+        opacity: 0.75;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+</style>
+<script src="//d3js.org/d3.v4.min.js"></script>
+<script>
+  var dados1 = {
+    "nome": "Voos",
+    "filhos": [
+      {
+        "nome": "Voo 1",
+        "filhos": [
+          {
+            "nome": "Passageiros",
+            "filhos": [
+              {"nome": "Passageiro 1", "importancia": 3938},
+              {"nome": "Passageiro 2", "importancia": 3812},
+              {"nome": "Passageiro 3", "importancia": 6714},
+              {"nome": "Passageiro 4", "importancia": 15000}
+            ]
+          }
+        ]
+       },
+       {
+        "nome": "Voo 2",
+        "filhos": [
+          {
+            "nome": "Passageiros",
+            "filhos": [
+              {"nome": "Passageiro 5", "importancia": 1000},
+              {"nome": "Passageiro 6", "importancia": 2000},
+              {"nome": "Passageiro 7", "importancia": 3000},
+              {"nome": "Passageiro 8", "importancia": 500}
+            ]
+          }
+        ]
+       }
+    ]
+  };
+
+var dados = {
+    "nome": "Voos",
+    "filhos": [
+      {
+        "nome": "Voo 1",
+        "filhos": [
+          {
+            "nome": "Passageiros",
+            "filhos": [
+              {"nome": "Passageiro 1", "importancia": 3938},
+              {"nome": "Passageiro 2", "importancia": 3000}
+            ]
+          }
+        ]
+       },
+       {
+        "nome": "Voo 2",
+        "filhos": [
+          {
+            "nome": "Passageiros",
+            "filhos": [
+              {"nome": "Passageiro 4", "importancia": 3500},
+              {"nome": "Passageiro 5", "importancia": 500}
+            ]
+          }
+        ]
+       }
+    ]
+  };
+
+</script>
+<script>
+
+</script>
+<script type="module">
+import { Componente } from "./componente.js";
+
+'use strict';
+
+window.onload = renderizar;
+window.onresize = renderizar;
+
+
+function renderizar() {
+
+  const margin = {top: 40, right: 10, bottom: 10, left: 10},
+        width = window.innerWidth - margin.left - margin.right,
+        height = window.innerHeight - margin.top - margin.bottom,
+        color = d3.scaleOrdinal().range(d3.schemeCategory20c);
+
+  d3.selectAll("div").remove();
+
+  window.treemap = d3.treemap().size([width, height]);
+
+  const div = d3.select("body").append("div")
+      .style("position", "relative")
+      .style("width", (width + margin.left + margin.right) + "px")
+      .style("height", (height + margin.top + margin.bottom) + "px")
+      .style("left", margin.left + "px")
+      .style("top", margin.top + "px");
+
+    let data = dados;
+
+    const root = d3.hierarchy(data, (d) => d.filhos)
+      .sum((d) => d.importancia);
+
+    window.tree = window.treemap(root);
+
+    window.node = div.datum(root).selectAll(".node")
+        .data(window.tree.leaves())
+      .enter().append("componente-view")
+        .attr("class", "node container")
+        .attr("dados",(d) => JSON.stringify(d.data))
+        .style("left", (d) => d.x0 + "px")
+        .style("top", (d) => d.y0 + "px")
+        .style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
+        .style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
+        .style("background", (d) => color(d.parent.data.nome))
+        .text((d) => d.data.nome);
+};
+
+</script>
+</body>
