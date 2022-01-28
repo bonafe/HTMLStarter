@@ -3,6 +3,9 @@ export class ComponenteBase extends HTMLElement{
 
     constructor(propriedades){
         super();
+        
+        this.prefixoEndereco = window.location.href.substring(0, window.location.href.lastIndexOf("/"));
+
         if (propriedades.shadowDOM){
             this.noRaiz = this.attachShadow({mode: 'open'});        
         }else{
@@ -13,8 +16,8 @@ export class ComponenteBase extends HTMLElement{
 
 
 
-    async carregarTemplate(templateURL){
-        let resposta = await fetch(templateURL);
+    async carregarTemplate(templateURL){        
+        let resposta = await fetch(this.prefixoEndereco + templateURL);
         let textoPagina = await resposta.text();
         let template = document.createElement("template");
         template.innerHTML = textoPagina;
