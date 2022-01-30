@@ -51,8 +51,12 @@ export class ElementoTreeMap extends ComponenteBase {
 
     carregarComponente(){
 
+        //Se é uma URL relativa, usa o prefixo de endereço preenchido pelo ComponenteBase
+        //Caso contrário usa a própria url
+        let url = (this.componente.url.startsWith('/') ? (this.prefixoEndereco + this.componente.url) : this.componente.url);
+        
         //Carrega dinamicamente o componente
-        import(this.componente.url).then(modulo => {
+        import(url).then(modulo => {
 
             this.instanciaComponente = document.createElement(this.componente.nome);
 
