@@ -1,30 +1,47 @@
 export class BaseTestesTreeMap{
 
     static base = {
-        "nome": "Voos",
-        "filhos": [
-        {
-            "nome": "Voo 1",
-            "filhos": [
-            {
-                "nome": "Passageiros",
-                "filhos": [
-                {"nome": "Passageiro 1", "importancia": 3938},
-                {"nome": "Passageiro 2", "importancia": 3000}
-                ]
-            }
-            ]
+        "descricao": "Conjunto de telas salvas",
+        "telas": [
+        {   "id": 1,
+            "descricao": "Contatos de A a J",            
+            "componentes": [
+                {
+                    "descricao": "Componente 1",
+                    "url": "/componentes/contatos/contatos_view.js",
+                    "nome": "contatos-view",
+                    "importancia": 10
+                },
+                { 
+                    "descricao": "Componente 2",
+                    "url": "/componentes/contatos/contato_view.js",
+                    "nome": "contato-view",
+                    "importancia": 8
+                }
+            ]            
         },
         {
-            "nome": "Voo 2",
-            "filhos": [
-            {
-                "nome": "Passageiros",
-                "filhos": [
-                {"nome": "Passageiro 4", "importancia": 3500},
-                {"nome": "Passageiro 5", "importancia": 500}
-                ]
-            }
+            "id": 2,
+            "descricao": "Todos os contatos",
+            "componentes": [            
+                {
+                    "descricao": "Componente 4",
+                    "url": "/componentes/contatos/contatos_view.js",
+                    "nome": "contatos-view",
+                    "importancia": 6
+                },
+                {
+                    "descricao": "Componente 5",
+                    "url": "/componentes/contatos/contato_view.js",
+                    "nome": "contato-view",
+                    "importancia": 4
+                },
+                {
+                    "descricao": "Componente 6",
+                    "url": "/componentes/contatos/contato_view.js",
+                    "nome": "contato-view",
+                    "importancia": 8
+                },            
             ]
         }
         ]

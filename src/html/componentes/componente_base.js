@@ -4,6 +4,8 @@ export class ComponenteBase extends HTMLElement{
     constructor(propriedades){
         super();
         
+        this.carregou = true;
+
         this.prefixoEndereco = window.location.href.substring(0, window.location.href.lastIndexOf("/"));
 
         if (propriedades.shadowDOM){
@@ -27,6 +29,7 @@ export class ComponenteBase extends HTMLElement{
         //Observa no próximo laço de eventos
         setTimeout(()=>this.observar());
 
+        this.carregou = true;
         this.dispatchEvent(new Event("carregou"));
     }
 

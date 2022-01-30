@@ -21,7 +21,7 @@ export class ContainerTreeMap extends ComponenteBase{
 
     renderizar(dados) {
 
-        const margin = {top: 40, right: 10, bottom: 10, left: 10};
+        const margin = {top: 0, right: 0, bottom: 0, left: 0};
         const width = this.container.clientWidth - margin.left - margin.right;
         const height = this.container.clientHeight - margin.top - margin.bottom;
         const color = d3.scaleOrdinal().range(d3.schemeCategory20c);
@@ -29,7 +29,7 @@ export class ContainerTreeMap extends ComponenteBase{
         d3.select(this.container).selectAll("div").remove();
       
         this.treemap = d3.treemap().size([width, height]);
-      
+
         const div = d3.select(this.container).append("div")
             .style("position", "relative")
             .style("width", (width + margin.left + margin.right) + "px")
@@ -37,7 +37,7 @@ export class ContainerTreeMap extends ComponenteBase{
             .style("left", margin.left + "px")
             .style("top", margin.top + "px");
         
-        const root = d3.hierarchy(dados, (d) => d.filhos).sum((d) => d.importancia);
+        const root = d3.hierarchy(dados, (d) => (d.telas ? d.telas : d.componentes)).sum((d) => d.importancia);
       
         this.tree = this.treemap(root);
       
@@ -45,7 +45,7 @@ export class ContainerTreeMap extends ComponenteBase{
             .data(this.tree.leaves())
                 .enter().append("elemento-treemap")
                     .attr("class", "node container")
-                    .attr("dados",(d) => JSON.stringify(d.data))
+                    .attr("componente",(d) => JSON.stringify(d.data))
                     .style("left", (d) => d.x0 + "px")
                     .style("top", (d) => d.y0 + "px")
                     .style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
