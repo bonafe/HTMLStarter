@@ -28,15 +28,21 @@ export class ElementoTreeMap extends ComponenteBase {
 
 
 
-    attributeChangedCallback(name, oldValue, newValue) {
+    attributeChangedCallback(nomeAtributo, valorAntigo, novoValor) {
 
-        if (name.localeCompare("componente") == 0){
+        //Atributo componente é usado pelo ElementoTreeMap para definir qual componente renderizar
+        if (nomeAtributo.localeCompare("componente") == 0){
 
-            this.componente = JSON.parse(newValue);
+            this.componente = JSON.parse(novoValor);
 
             //Se o componente base já foi carregado
             if (this.carregado){
                 this.carregarComponente();
+            }
+        } else if (nomeAtributo.localeCompare("dados") == 0){
+            this.dados  = novoValor;
+            if (this.instanciaComponente){
+                this.instanciaComponente.setAttribute("dados", this.dados);
             }
         }
     }
@@ -48,9 +54,15 @@ export class ElementoTreeMap extends ComponenteBase {
         //Carrega dinamicamente o componente
         import(this.componente.url).then(modulo => {
 
-            let instanciaComponente = document.createElement(this.componente.nome);
-            //instanciaComponente.setAttribute("dados", dados);
-            this.noRaiz.querySelector("#containerComponente").appendChild(instanciaComponente);
+            this.instanciaComponente = document.createElement(this.componente.nome);
+
+            if (this.dados){
+                this.instanciaComponente.setAttribute("dados", this.dados);
+            }
+
+            this.noRaiz.querySelector("#containerComponente").appendChild(this.instanciaComponente);
+
+            this.componenteCarregado = true;
         });
     }
 }

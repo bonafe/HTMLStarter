@@ -34,13 +34,7 @@ export class ComponenteBase extends HTMLElement{
     }
 
 
-
-    static get observedAttributes() {
-        return ['dados'];
-    }
-
-
-
+    
     observar(){
         this.resizeObserver = new ResizeObserver(elementos =>{
             elementos.forEach(elemento => {      
@@ -55,21 +49,7 @@ export class ComponenteBase extends HTMLElement{
     }    
 
 
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (name.localeCompare("dados") == 0){
-            this.dados = JSON.parse(newValue);
-            this.atualizarDados();
-        }
-    }
-
-
-
-    atualizarDados(){
-    }
-
-
-
+    
     connectedCallback() {
     }
 

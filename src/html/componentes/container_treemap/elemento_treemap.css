@@ -3,17 +3,10 @@ label{
 }
 
 .container{
-  height: 100%;
-  container-type: size;
-  container-name: componente-wrapper;
+  height: 100%;  
   background-color: rgb(255, 251, 0);
 }
 
-@container componente-wrapper size(max-width: 700px) {
-  .controlesJanela {
-    flex-direction: column;
-  }
-}
 
 
 .controlesJanela{

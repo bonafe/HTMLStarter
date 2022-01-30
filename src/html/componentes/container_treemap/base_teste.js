@@ -8,15 +8,27 @@ export class BaseTestesTreeMap{
             "componentes": [
                 {
                     "descricao": "Componente 1",
-                    "url": "/componentes/contatos/contatos_view.js",
-                    "nome": "contatos-view",
-                    "importancia": 10
+                    "importancia": 10,
+                    "componente":{
+                        "url": "/componentes/contatos/contatos_view.js",
+                        "nome": "contatos-view"
+                    }                                 
                 },
                 { 
                     "descricao": "Componente 2",
-                    "url": "/componentes/contatos/contato_view.js",
-                    "nome": "contato-view",
-                    "importancia": 8
+                    "importancia": 16,
+                    "componente":{                        
+                        "url": "/componentes/editor_json/editor_json.js",
+                        "nome": "editor-json"
+                    },                    
+                    "dados":{
+                        "nome":"valor do nome tipo string",
+                        "lista":["elemento1",2,3,4,true,false,{"id":"12"},[1,2,3]],
+                        "objeto":{
+                            "titulo":"esse é o título",
+                            "ano":1913
+                        }
+                    }
                 }
             ]            
         },
@@ -26,21 +38,27 @@ export class BaseTestesTreeMap{
             "componentes": [            
                 {
                     "descricao": "Componente 4",
-                    "url": "/componentes/contatos/contatos_view.js",
-                    "nome": "contatos-view",
-                    "importancia": 6
+                    "importancia": 6,
+                    "componente":{
+                        "url": "/componentes/contatos/contatos_view.js",
+                        "nome": "contatos-view"
+                    }
                 },
                 {
-                    "descricao": "Componente 5",
-                    "url": "/componentes/contatos/contato_view.js",
-                    "nome": "contato-view",
-                    "importancia": 4
+                    "descricao": "Componente 5",                    
+                    "importancia": 4,
+                    "componente":{
+                        "url": "/componentes/contatos/contatos_view.js",
+                        "nome": "contatos-view"
+                    }
                 },
                 {
                     "descricao": "Componente 6",
-                    "url": "/componentes/contatos/contato_view.js",
-                    "nome": "contato-view",
-                    "importancia": 8
+                    "importancia": 8,
+                    "componente":{
+                        "url": "/componentes/contatos/contatos_view.js",
+                        "nome": "contatos-view"
+                    }
                 },            
             ]
         }
