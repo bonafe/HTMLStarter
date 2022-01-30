@@ -35,28 +35,29 @@
 
   </style>
 </head>
-<div id="containerPrincipal">
-  <container-treemap id="containerTreeMap"></container-treemap>
-  <!--div id="containerTreeMap"></div-->
-</div>
-<script type="module">
-  
-  import { ContainerTreeMap } from './componentes/container_treemap/container_treemap.js';
-  
-  'use strict';
-  
-  window.onload = carregou;
-  
-  function carregou(){
-  
-      const supportsContainerQueries = "container" in document.documentElement.style;
-  
-      // Conditional Import
-      if (!supportsContainerQueries) {
-        import("https://cdn.skypack.dev/container-query-polyfill").then(modulo =>{        
-        });
-      }
-  }
-</script>
+<body>
+  <div id="containerPrincipal">
+    <container-treemap id="containerTreeMap"></container-treemap>
+    <!--div id="containerTreeMap"></div-->
+  </div>
+  <script type="module">
+    
+    import { ContainerTreeMap } from './componentes/container_treemap/container_treemap.js';
+    
+    'use strict';
+    
+    window.onload = carregou;
+    
+    function carregou(){
+    
+        const supportsContainerQueries = "container" in document.documentElement.style;
+    
+        // Conditional Import
+        if (!supportsContainerQueries) {
+          import("https://cdn.skypack.dev/container-query-polyfill").then(modulo =>{        
+          });
+        }
+    }
+  </script>
 </body>
 </html>
