@@ -6,7 +6,7 @@ export class ComponenteBase extends HTMLElement{
         
         this.carregou = true;
 
-        this.prefixoEndereco = window.location.href.substring(0, window.location.href.lastIndexOf("/"));
+        this._prefixoEndereco = window.location.href.substring(0, window.location.href.lastIndexOf("/"));
 
         if (propriedades.shadowDOM){
             this.noRaiz = this.attachShadow({mode: 'open'});        
@@ -14,6 +14,12 @@ export class ComponenteBase extends HTMLElement{
             this.noRaiz = this;
         }
         this.carregarTemplate(propriedades.templateURL);
+    }
+
+
+    
+    get prefixoEndereco(){
+        return this._prefixoEndereco;
     }
 
 
@@ -34,7 +40,7 @@ export class ComponenteBase extends HTMLElement{
     }
 
 
-    
+
     observar(){
         this.resizeObserver = new ResizeObserver(elementos =>{
             elementos.forEach(elemento => {      

@@ -12,7 +12,7 @@ export class EditorJSON extends ComponenteBase {
         this.addEventListener("carregou", () => {
 
             //Importa dinamicamente a biblioteca JSONEditor
-            import('/bibliotecas/jsoneditor/jsoneditor.js').then(modulo => {
+            import(`${super.prefixoEndereco}/bibliotecas/jsoneditor/jsoneditor.js`).then(modulo => {
 
                 this.criarEditor();                               
             });
